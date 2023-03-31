@@ -13,7 +13,6 @@ $assets_routes = [
     new RouteFunctions("/assets/images/", "Content-Type: image/webp"),
     new RouteFunctions("/assets/js/", "Content-Type: text/javascript"),
     new RouteFunctions("/modules/", "Content-Type: text/javascript"),
-    
 ];
 
 $pages_routes = [
@@ -21,6 +20,7 @@ $pages_routes = [
     // Primeiro o Path e depois passar o page_path
     // Caso seja rotas dinamicas como páginas de SEO
     // colocar no parametro da função is_dinamic: true
+    // coloque sempre páginas dinamicas no final da array
     new RouteFunctions("/", page_archive_path: "pages/home.php"),
     new RouteFunctions("/", page_archive_path: "pages/conversion_page.php", is_dinamic: true)
 ];

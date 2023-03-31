@@ -5,5 +5,6 @@
     <?php include 'includes/components/header.php' ?> 
     ooe
     <?php include 'includes/components/footer.php' ?>
+    <?php include 'includes/configurations/schema_data.php' ?>
 </body>
 </html>

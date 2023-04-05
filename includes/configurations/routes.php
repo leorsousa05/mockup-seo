@@ -22,6 +22,10 @@ $pages_routes = [
     // colocar no parametro da função is_dinamic: true
     // coloque sempre páginas dinamicas no final da array
     new RouteFunctions("/", page_archive_path: "pages/home.php"),
+    new RouteFunctions("/email-send", page_archive_path: "includes/configurations/mail_configuration.php"),
+    new RouteFunctions("/404", page_archive_path: "pages/404_page.php"),
+    new RouteFunctions("thank-you-page", page_archive_path: "pages/thank_you_page.php"),
+    new RouteFunctions("/mapa-site", page_archive_path: "pages/sitemap.php"),
     new RouteFunctions("/", page_archive_path: "pages/conversion_page.php", is_dinamic: true)
 ];
 

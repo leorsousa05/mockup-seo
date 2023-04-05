@@ -9,9 +9,9 @@ $is_route_data_set = !isset($seo_data_by_route["first_text"]);
 $is_error_page = $uri === "/404";
 
 $seo_data = get_seo_data();
+$seo_data_by_route = get_seo_data_by_route($page);
 
 if($is_dinamic_page) {
-    $seo_data_by_route = get_seo_data_by_route($page);
     if($is_route_data_set) {
         echo '<script type="text/javascript">
             window.location = "/404"

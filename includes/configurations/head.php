@@ -18,10 +18,6 @@ if($is_dinamic_page) {
                </script>';
     } 
 
-} elseif($is_error_page) {
-    echo '<script type="text/javascript">
-        setTimeout(function() {window.location = "/"}, 3000)
-            </script>';
 }
 
 ?>

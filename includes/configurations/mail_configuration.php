@@ -1,19 +1,8 @@
 <?php
 require 'modules/PHPMailer/PHPMailerAutoload.php';
+require 'includes/configurations/website_data.php';
 
 $mail = new PHPMailer(true);
-$host = "mail.poderesoterico.com.br";
-$host_username = "envio@poderesoterico.com.br";
-$host_password = "KUQTYb#oa4=N";
-
-$mail_form = $_GET["email"];
-$name_form = $_GET["name"];
-$phone_number = $_GET["phone-number"];
-$message = $_GET["message"];
-$subject = "Contato Via Site - Poder Esotérico";
-$date = date("d/m/Y H:i:s");
-$ip = $_SERVER['REMOTE_ADDR'];
-$receiver = "leorsousa05@gmail.com";
 
 // EMAIL SENDER CONFIGURATIONS
 $mail->isSMTP();

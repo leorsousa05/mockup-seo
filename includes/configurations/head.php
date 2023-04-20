@@ -9,7 +9,7 @@ $is_route_data_set = !isset($seo_data_by_route["first_text"]);
 $is_error_page = $uri === "/404";
 
 $seo_data = get_seo_data();
-$seo_data_by_route = get_seo_data_by_route($page);
+$seo_data_by_route = isset($page) ? get_seo_data_by_route($page) : false;
 
 if($is_dinamic_page) {
     if($is_route_data_set) {

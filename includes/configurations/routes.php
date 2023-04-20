@@ -1,18 +1,18 @@
 <?php
 require 'modules/AltoRouter.php';
 require 'router_functions.php';
-
 $router = new AltoRouter();
+
 
 $assets_routes = [
     // Adicionar aqui Rotas da mesma forma como está abaixo
     // Colocar o path do arquivo apenas, não colocar o nome do arquivo.
     // exemplo: /assets/ e não /assets/main.js
-    new RouteFunctions("/assets/fonts", "Content-Type: application/font-woff2"),
-    new RouteFunctions("/assets/css/", "Content-Type: text/css"),
-    new RouteFunctions("/assets/images/", "Content-Type: image/webp"),
-    new RouteFunctions("/assets/js/", "Content-Type: text/javascript"),
-    new RouteFunctions("/modules/", "Content-Type: text/javascript"),
+    new AssetsRequest("/assets/fonts", "Content-Type: application/font-woff2"),
+    new AssetsRequest("/assets/css/", "Content-Type: text/css"),
+    new AssetsRequest("/assets/images/", "Content-Type: image/webp"),
+    new AssetsRequest("/assets/js/", "Content-Type: text/javascript"),
+    new AssetsRequest("/modules/", "Content-Type: text/javascript"),
 ];
 
 $pages_routes = [
@@ -21,12 +21,12 @@ $pages_routes = [
     // Caso seja rotas dinamicas como páginas de SEO
     // colocar no parametro da função is_dinamic: true
     // coloque sempre páginas dinamicas no final da array
-    new RouteFunctions("/", page_archive_path: "pages/home.php"),
-    new RouteFunctions("/email-send", page_archive_path: "includes/configurations/mail_configuration.php"),
-    new RouteFunctions("/404", page_archive_path: "pages/404_page.php"),
-    new RouteFunctions("thank-you-page", page_archive_path: "pages/thank_you_page.php"),
-    new RouteFunctions("/mapa-site", page_archive_path: "pages/sitemap.php"),
-    new RouteFunctions("/", page_archive_path: "pages/conversion_page.php", is_dinamic: true)
+    new PagesRequest("/", "pages/home.php"),
+    new PagesRequest("/email-send", "includes/configurations/mail_configuration.php"),
+    new PagesRequest("/404", "pages/404_page.php"),
+    new PagesRequest("thank-you-page", "pages/thank_you_page.php"),
+    new PagesRequest("/mapa-site", "pages/sitemap.php"),
+    new PagesRequest("/", "pages/conversion_page.php", true)
 ];
 
 $archives_routes = [
@@ -34,21 +34,15 @@ $archives_routes = [
     // se encaixe nem no assets e nem no modules
     // normalmente arquivos em que a gente especifica o nome
     // e não faz a requisição pelo website
-    new RouteFunctions("/google429e1c1077d88e4d.html", 'Content-Type: text/html'),
-    new RouteFunctions("/sitemap.xml", 'Content-Type: application/xml'),
-    new RouteFunctions('/robots.txt', 'Content-Type: text/plain')
+    new SecondaryArchivesRequest("/google429e1c1077d88e4d.html", 'Content-Type: text/html'),
+    new SecondaryArchivesRequest("/sitemap.xml", 'Content-Type: application/xml'),
+    new SecondaryArchivesRequest('/robots.txt', 'Content-Type: text/plain')
 ];
 
-foreach($assets_routes as $key=>$file) {
-    $file->get_assets_request($router);
-}
+$routes = array_merge($archives_routes, $assets_routes, $pages_routes);
 
-foreach($pages_routes as $key=>$file) {
-    $file->get_page_request($router);
-}
-
-foreach($archives_routes as $key=>$file) {
-    $file->get_archives_request($router);
+foreach($routes as $key=>$file) {
+    $file->get_route($router);
 }
 
 $match = $router->match();
